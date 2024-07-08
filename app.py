@@ -76,7 +76,7 @@ def predict():
 
     except Exception as e:
         print(f"Exception occurred: {str(e)}")
-        return "An error occurred while processing the request.", 501  # Return HTTP 500 status for internal server error
+        return f"An error occurred while processing the request.{str(e)}", 501  # Return HTTP 500 status for internal server error
 
 
 if __name__ == '__main__':
