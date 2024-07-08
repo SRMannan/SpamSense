@@ -4,7 +4,7 @@ SpamSense is a project focused on intelligent spam detection using Natural Langu
 
 ## Deployment Link
 
-Visit the live deployment of SpamSense: https://spamsense-51.onrender.com/
+Visit the live deployment of SpamSense: [SpamSense Deployment](https://spamsense-51.onrender.com/)
 
 ## Features
 
