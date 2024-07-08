@@ -2,8 +2,9 @@ from flask import Flask, render_template, request
 import pickle
 import numpy as np
 import nltk
-from nltk.corpus import stopwords
+nltk.download('punkt')
 
+from nltk.corpus import stopwords
 nltk.download('stopwords')
 english_stopwords = stopwords.words('english')
 
