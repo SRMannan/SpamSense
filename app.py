@@ -43,6 +43,7 @@ def transform_text(text):
 
     return " ".join(res)
 
+
 app = Flask(__name__)
 
 
@@ -53,24 +54,29 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'POST':
-        input_sms = str(request.form['floatingTextarea2'])
+    try:
+        if request.method == 'POST':
+            input_sms = str(request.form['floatingTextarea2'])
 
-        # preprocess
-        transformed_sms = transform_text(input_sms)
+            # preprocess
+            transformed_sms = transform_text(input_sms)
 
-        #vectorise
-        vector_sms = tfidf.transform([transformed_sms])
+            # vectorise
+            vector_sms = tfidf.transform([transformed_sms])
 
-        #prediction
-        res = model.predict(vector_sms)[0]
+            # prediction
+            res = model.predict(vector_sms)[0]
 
-        if res == 1:
-            prediction_text = "SPAM"
-        else:
-            prediction_text = "NOT SPAM"
+            if res == 1:
+                prediction_text = "SPAM"
+            else:
+                prediction_text = "NOT SPAM"
 
-        return render_template('home.html', prediction_text=f'The message is: {prediction_text}')
+            return render_template('home.html', prediction_text=f'The message is: {prediction_text}')
+
+    except Exception as e:
+        print(f"Exception occurred: {str(e)}")
+        return "An error occurred while processing the request.", 501  # Return HTTP 500 status for internal server error
 
 
 if __name__ == '__main__':
